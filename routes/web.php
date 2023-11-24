@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\CitaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/doctores', [DoctorController::class, 'index']);
+Route::get('/pacientes', [PacienteController::class, 'index']);
+Route::get('/citas', [CitaController::class, 'index']);
