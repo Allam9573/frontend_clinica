@@ -140,10 +140,10 @@
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Apellido</th>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Medico</th>
                             <th scope="col">Especialidad</th>
-                            <th scope="col">Jornada</th>
+                            <th scope="col">Fecha Cita</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
