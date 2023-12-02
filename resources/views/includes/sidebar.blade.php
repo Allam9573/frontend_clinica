@@ -3,18 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 <body>
-     <!-- Sidebar -->
+    
+<input type="checkbox" id="check">
+    <label for="check">
+        <i class="bi bi-list" id="btn"></i>
+        <i class="bi bi-x" id="cancel"></i>
+    </label>
      <div class="sidebar">
-        <h2 class="text-white">Home</h2>
-        <a href="{{url('/')}}">Inicio</a>
-        <a href="{{url('/doctores')}}">Doctores</a>
-        <a href="{{url('/pacientes')}}">Pacientes</a>
-        <a href="{{url('/citas')}}">Citas</a>
-        <a >Mi Perfil</a>
+        <header>Home</header>
+        <ul>
+            <li><a href="{{url('/')}}"><i class="bi bi-house">Inicio</i></a></li>
+            <li><a href="{{url('/doctores')}}"><i class="bi bi-hospital">Doctores</i></a></li>                
+            <li><a href="{{url('/pacientes')}}"><i class="bi bi-heart-pulse">Pacientes</i></a></li>
+            <li><a href="{{url('/citas')}}"><i class="bi bi-clipboard2-pulse">Citas</i></a></li>
+            <li><a >Mi Perfil</a></li>
+        </ul>
     </div>
 </body>
 </html>
