@@ -22,15 +22,12 @@ class SalaController extends Controller
                 'json' => [
                     'nombre' => $nombre,
                     'descripcion' => $descripcion,
-                    // Agrega más campos según tus necesidades
                 ],
             ]);
 
             if ($response->getStatusCode() === 200) {
-                // Redirige a la vista HTML
                 return redirect()->route('obtenerSalas');
             } else {
-                // Maneja otros casos según sea necesario
                 return response('Error al crear el cliente en Spring Boot', 500);
             }
         } catch (\Exception $e) {
