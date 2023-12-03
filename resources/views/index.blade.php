@@ -31,7 +31,7 @@
                                 <h3 class="card-title text-primary">Personal Medico</h3>
                                 <h5 class="card-text text-secondary" th:text="${cantDoctores}+' doctores'"></h5>
                                 <button id=" boton"
-                                    onclick="mostrardoc(), ocultarpaciente(), ocultarcita(), ocultarsala();"
+                                onclick="mostrardoc(), ocultarpaciente(), ocultarcita(), ocultarsala(), ocultarespecialidad();"
                                     class="btn btn-primary">Ver Mas</button>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                                 <h3 class="card-title text-success">Pacientes</h3>
                                 <h5 class="card-text text-secondary" th:text="'Informacion sobre pacientes'"></h5>
                                 <a th:href="@{/app/pacientes}"
-                                    onclick="mostrarpaciente(), ocultardoc(), ocultarcita(), ocultarsala();"
+                                onclick="mostrarpaciente(), ocultardoc(), ocultarcita(), ocultarsala(), ocultarespecialidad();"
                                     class="btn btn-success">Ver Mas</a>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                 <h3 class="card-title text-danger">Citas Medicas</h3>
                                 <h5 class="card-text text-secondary" th:text="${cantCitas}+' Citas Medicas'"></h5>
                                 <a th:href="@{/app/citas}"
-                                    onclick="mostrarcita(), ocultardoc(), ocultarpaciente(), ocultarsala();"
+                                onclick="mostrarcita(), ocultardoc(), ocultarpaciente(), ocultarsala(), ocultarespecialidad();"
                                     class="btn btn-danger">Ver Mas</a>
                             </div>
                         </div>
@@ -69,11 +69,21 @@
                                 <h3 class="card-title text-info">Salas</h3>
                                 <h5 class="card-text text-secondary" th:text="'Medicamentos y mas'"></h5>
                                 <a th:href="@{/app/farmacia}"
-                                    onclick="mostrarsala(), ocultarrcita(), ocultardoc(), ocultarpaciente();"
+                                onclick="mostrarsala(), ocultarcita(), ocultardoc(), ocultarpaciente(), ocultarespecialidad();"
                                     class="btn btn-info text-white">Ver Mas</a>
                             </div>
                         </div>
                     </div>
+                    <div class="col-3" style="margin-top: 20px">
+                    <div class="card shadow">
+                        <img src="{{ url('images/especialidades.jpeg') }}" width="120px" class="m-2" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title text-secondary">Especialidades</h3>
+                            <h5 class="card-text text-secondary" th:text="'Informacion sobre pacientes'"></h5>
+                            <a th:href="@{/app/pacientes}" onclick="mostrarespecialidad(), ocultardoc(), ocultarcita(), ocultarsala(), ocultarpaciente();" class="btn btn-secondary">Ver Mas</a>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
             <!--doctores-->
@@ -496,6 +506,18 @@
                             <div class="card shadow">
                                 <div class="card-body">
                                     <h4 class="m-3">No hay pacientes registrados</h4>
+                                    <form action="" method="POST">
+                                        @csrf
+                                        <input type="text" name="nombre" id=""
+                                            placeholder="Nombre" class="form-control mb-2">
+                                        <input type="text" name="apellido" id=""
+                                            placeholder="Apellido" class="form-control mb-2">
+                                        <input type="email" class="form-control mb-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="corre">
+                                        <input type="text" name="telefono" id=""
+                                            placeholder="telefono" class="form-control mb-2">
+                                        <input type="text" name="fecha" id=""
+                                            placeholder="fecha" class="form-control mb-2">
+                                    </form>
                                     <button type="button" class="mx-3 btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">Nuevo Paciente
                                     </button>
@@ -1039,6 +1061,32 @@
                     <button id="button" onclick="ocultarsala();" class="mx-3 btn btn-primary">Ocultar</button>
                 </div>
             </div>
+
+            <!--especialidad-->
+            <div class="container" id="especialidad">
+                <h1>Especialidad</h1>
+                <div class="row">
+                        <div class="col-4">
+                            <div class="card shadow">
+                                <div class="card-body">
+                                    <h4 class="m-3">Crear Nueva Especialidad</h4>
+                                    <form action="" method="POST">
+                                        @csrf
+                                        <input type="text" name="nombre" id=""
+                                            placeholder="Nombre de la sala" class="form-control mb-2">
+                                    </form>
+                                    <button type="button" class="mx-3 btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        Nueva Especialidad
+                                    </button>
+                                    <button id="button" onclick="ocultarcita();" class="mx-3 btn btn-primary">Ocultar</button>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-4"></div>
+                <div class="col-4"></div>
+            </div>
+    </div>
         </div>
         <script>
             function mostrardoc() {
@@ -1071,6 +1119,14 @@
 
             function ocultarsala() {
                 document.getElementById('citas').style.display = 'none';
+            }
+
+            function mostrarespecialidad(){
+            document.getElementById('especialidad').style.display='block';
+            }
+
+            function ocultarespecialidad(){
+                document.getElementById('especialidad').style.display='none';
             }
         </script>
     </section>
