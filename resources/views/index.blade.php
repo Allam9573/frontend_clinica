@@ -24,10 +24,6 @@
     </style>
 </head>
 <body>
-
-
-    
-    
     <section>
         <h1>Bienvenido al Panel de Administración</h1>
         <div style=" margin-top:50px;" >
@@ -42,7 +38,7 @@
 
                             <h3 class="card-title text-primary">Personal Medico</h3>
                             <h5 class="card-text text-secondary" th:text="${cantDoctores}+' doctores'"></h5>
-                            <button id=" boton" onclick="mostrardoc(), ocultarpaciente(), ocultarcita();" class="btn btn-primary">Ver Mas</button>
+                            <button id=" boton" onclick="mostrardoc(), ocultarpaciente(), ocultarcita(), ocultarsala();" class="btn btn-primary">Ver Mas</button>
                         </div>
                     </div>
                 </div>
@@ -53,7 +49,7 @@
                         <div class="card-body">
                             <h3 class="card-title text-success">Pacientes</h3>
                             <h5 class="card-text text-secondary" th:text="'Informacion sobre pacientes'"></h5>
-                            <a th:href="@{/app/pacientes}" onclick="mostrarpaciente(), ocultardoc(),ocultarcita()" class="btn btn-success">Ver Mas</a>
+                            <a th:href="@{/app/pacientes}" onclick="mostrarpaciente(), ocultardoc(), ocultarcita(), ocultarsala();" class="btn btn-success">Ver Mas</a>
                         </div>
                     </div>
                 </div>
@@ -63,7 +59,7 @@
                         <div class="card-body">
                             <h3 class="card-title text-danger">Citas Medicas</h3>
                             <h5 class="card-text text-secondary" th:text="${cantCitas}+' Citas Medicas'"></h5>
-                            <a th:href="@{/app/citas}" onclick="mostrarcita(), ocultardoc(), ocultarpaciente()" class="btn btn-danger">Ver Mas</a>
+                            <a th:href="@{/app/citas}" onclick="mostrarcita(), ocultardoc(), ocultarpaciente(), ocultarsala();" class="btn btn-danger">Ver Mas</a>
                         </div>
                     </div>
                 </div>
@@ -73,7 +69,7 @@
                         <div class="card-body">
                             <h3 class="card-title text-info">Salas</h3>
                             <h5 class="card-text text-secondary" th:text="'Medicamentos y mas'"></h5>
-                            <a th:href="@{/app/farmacia}" onclick="ocultarrcita(), ocultardoc(), ocultarpaciente()" class="btn btn-info text-white">Ver Mas</a>
+                            <a th:href="@{/app/farmacia}" onclick="mostrarsala(), ocultarrcita(), ocultardoc(), ocultarpaciente();" class="btn btn-info text-white">Ver Mas</a>
                         </div>
                     </div>
                 </div>
@@ -85,6 +81,7 @@
         <h1>Personal Medico</h1>
 
         <!-- Si NO existes doctores -->
+        
         <div th:if="${doctores.size() == 0}">
 
             <!-- Modal -->
@@ -826,6 +823,194 @@
         </div>
 
     </div>
+
+    <!--salas-->
+    <div class="container" id="salas">
+        <h1>Salas</h1>
+
+        <!-- Si NO existes doctores -->
+        <div th:if="${doctores.size() == 0}">
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar nueva sala</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:action="@{/api/doctores/registrar}" method="post">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <input type="text" name="numero" placeholder="numero" class="form-control"
+                                                id="nombres">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <input type="text" name="doctor" placeholder="doctor"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <select name="especialidad" id="" class="form-control">
+                                                <option selected>Especialidad</option>
+                                                <option value="Medicina General">Medicina General</option>
+                                                <option value="Medicina Interna">Medicina Interna</option>
+                                                <option value="Dermatologia">Dermatologia</option>
+                                                <option value="Ortopedia">Ortopedia</option>
+                                                <option value="Nutricion">Nutricion</option>
+                                                <option value="Pediatria">Pediatria</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <select name="jornadaLaboral" id="" class="form-control">
+                                                <option selected>Jornada Laboral</option>
+                                                <option value="Matutina">Matutina</option>
+                                                <option value="Vespertina">Vespertina</option>
+                                                <option value="Nocturna">Nocturna</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Guardar Sala</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h4 class="m-3">No hay salas registradas</h4>
+                            <button type="button" class="mx-3 btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                Nueva Sala
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4"></div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+        <!-- Si hay doctores -->
+        <div th:if="${doctores.size() != 0}">
+            <h2 class="text-center">Lista de Salas:</h2>
+            <div class="container">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Numero</th>
+                            <th scope="col">doctor</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Jornada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="sala : ${sala}">
+                            <th th:text="${sala.id}" scope="row">1</th>
+                            <td th:text="${sala.numero}"></td>
+                            <td th:text="${sala.doctor}"></td>
+                            <td th:text="${sala.especialidad}"></td>
+                            <td th:text="${sala.jornadaLaboral}"></td>
+                            <td>
+                                <a th:href="@{/app/sala/sala/}+${sala.id}" class="btn btn-primary">Ver Mas</a>
+                                <a th:href="@{/api/sala/delete/}+${sala.id}" class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar nueva sala</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form th:action="@{/api/sala/registrar}" method="post">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <input type="text" name="numero" placeholder="numero"
+                                                    class="form-control" id="numero">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <input type="text" name="doctor" placeholder="doctor"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="mb-3">
+                                                <select name="especialidad" id="" class="form-control">
+                                                    <option selected>Especialidad</option>
+                                                    <option value="Medicina General">Medicina General</option>
+                                                    <option value="Medicina Interna">Medicina Interna</option>
+                                                    <option value="Dermatologia">Dermatologia</option>
+                                                    <option value="Ortopedia">Ortopedia</option>
+                                                    <option value="Nutricion">Nutricion</option>
+                                                    <option value="Pediatria">Pediatria</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div class="col-4">
+                                            <div class="mb-3">
+                                                <select name="jornadaLaboral" id="" class="form-control">
+                                                    <option selected>Jornada Laboral</option>
+                                                    <option value="Matutina">Matutina</option>
+                                                    <option value="Vespertina">Vespertina</option>
+                                                    <option value="Nocturna">Nocturna</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">Guardar sala</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="mx-3 btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Nuevo Doctor
+                </button>
+                <button id="button" onclick="ocultarsala();" class="mx-3 btn btn-primary">Ocultar</button>
+            </div>
+        </div>
+    </div>
     <script>
         function mostrardoc(){
             document.getElementById('doc').style.display='block';
@@ -843,6 +1028,12 @@
             document.getElementById('citas').style.display='block';
         }
         function ocultarcita(){
+            document.getElementById('citas').style.display='none';
+        }
+        function mostrarsala(){
+            document.getElementById('citas').style.display='block';
+        }
+        function ocultarsala(){
             document.getElementById('citas').style.display='none';
         }
     </script>

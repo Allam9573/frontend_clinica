@@ -105,19 +105,20 @@ label #cancel{
 
 h1{
     margin-left: 90px;
-    color:black;
+    color:white;
 }
 
 h2{
-    color: black;
+    color: white;
 }
 .contenido{
     top: 50px;
 }
 
 body{
-    background: url('../images/hospitalfondo.jpg') no-repeat;
-    background-size: cover all; 
-    background-position: center; 
-    
+    background:linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)), url('../images/fondosalahospital.jpeg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
 }
