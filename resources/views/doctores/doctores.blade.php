@@ -1,9 +1,10 @@
 @extends('base')
 @section('content')
-    <div class="container">
-        <h1 class="my-5 text-secondary">Personal Medico</h1>
+<div class="container" id="doc">
+        <h1>Personal Medico</h1>
 
         <!-- Si NO existes doctores -->
+        
         <div th:if="${doctores.size() == 0}">
 
             <!-- Modal -->
@@ -279,6 +280,7 @@
                     data-bs-target="#exampleModal">
                     Nuevo Doctor
                 </button>
+                <button id="button" onclick="ocultardoc();" class="mx-3 btn btn-primary">Ocultar</button>
             </div>
         </div>
 

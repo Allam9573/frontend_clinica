@@ -11,17 +11,6 @@
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <style>
-        #doc{
-            display: none;
-        }
-        #paciente{
-            display: none;
-        }
-        #citas{
-            display: none;
-        }
-    </style>
 </head>
 <body>
     <section>
@@ -76,7 +65,6 @@
             </div>
         </div>
     <!--doctores-->
-    </div>
     <div class="container" id="doc">
         <h1>Personal Medico</h1>
 

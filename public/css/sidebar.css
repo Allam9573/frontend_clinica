@@ -122,3 +122,16 @@ body{
     background-attachment: fixed;
     background-size: cover;
 }
+
+#doc{
+    display: none;
+}
+#paciente{
+    display: none;
+}
+#citas{
+    display: none;
+}
+#salas{
+    display: none;
+}
