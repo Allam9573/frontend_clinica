@@ -29,7 +29,11 @@ Route::post('/crear_especialidad', [EspecialidadController::class, 'crearEspecia
 
 Route::get('/salas', [SalaController::class, 'obtenerSalas'])->name('salas');
 Route::post('/crear-sala', [SalaController::class, 'crearSala'])->name('crearSala');
+Route::get('/sala-editar', [SalaController::class, 'editarSala'])->name('editarSala');
 // Route::delete('/salas/{id}', /
 
 Route::get('/citas',[CitaController::class, 'obtenerCitas'])->name('citas');
+
+Route::get('/pacientes',[PacienteController::class, 'obtenerPacientes'])->name('pacientes');
+Route::post('/crear-paciente', [PacienteController::class, 'crearPaciente'])->name('crearPaciente');
 

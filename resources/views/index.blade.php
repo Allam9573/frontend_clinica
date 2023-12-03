@@ -22,7 +22,7 @@
 
                 <!-- Aquí puedes agregar el contenido específico de cada sección -->
                 <div class="container">
-                    <h1 class="my-5">Bienvenido al Panel de Administración</h1>
+                    <h1 class="my-5 text-secondary">Bienvenido al Panel de Administración</h1>
                     <div class="row">
                         <div class="col-3">
                             <div class="card shadow">
