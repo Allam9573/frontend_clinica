@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\CitaController;
+use App\Http\Controllers\SalaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use App\Http\Controllers\CitaController;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/doctores', [DoctorController::class, 'index']);
-Route::get('/pacientes', [PacienteController::class, 'index']);
-Route::get('/citas', [CitaController::class, 'index']);
+// url salas
+Route::get('/', [SalaController::class, 'formSala']);
+Route::post('/crear-sala', [SalaController::class, 'crearSala'])->name('crearSala');
+Route::get('/', [SalaController::class,'obtenerSalas'])->name('obtenerSalas');
