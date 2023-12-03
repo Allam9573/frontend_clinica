@@ -1,7 +1,6 @@
 @extends('base')
-@section('content')
-    <div class="container" id="citas">
-        <h1 class="my-5 text-secondary">Citas</h1>
+
+<h1>Citas</h1>
 
         <!-- Si NO existes doctores -->
         <div th:if="${doctores.size() == 0}">
@@ -119,7 +118,7 @@
             <div class="row">
                 <div class="col-4">
                     <div class="card shadow">
-                        <div class="card-body">
+                        <div class="card-body" id="tarjeta">
                             <h4 class="m-3">No hay citas registradas</h4>
                             <button type="button" class="mx-3 btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
@@ -167,8 +166,6 @@
                     data-bs-target="#exampleModal">
                     Crear Cita
                 </button>
+                <button id="button" onclick="ocultarcita();" class="mx-3 btn btn-primary">Ocultar</button>
             </div>
         </div>
-
-    </div>
-@endsection
