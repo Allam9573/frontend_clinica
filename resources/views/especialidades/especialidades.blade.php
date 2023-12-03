@@ -1,24 +1,48 @@
 @extends('base')
-
-    <h1>Especialidad</h1>
-        <div class="row">
-                <div class="col-4">
-                    <div class="card shadow">
-                        <div class="card-body" id="tarjeta">
-                            <h4 class="m-3">Crear Nueva Especialidad</h4>
-                            <form action="" method="POST">
-                                 @csrf
-                                <input type="text" name="nombre" id=""
-                                     placeholder="Nombre de la sala" class="form-control mb-2">
-                            </form>
-                            <button type="button" class="mx-3 btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Nueva Especialidad
-                            </button>
-                            <button id="button" onclick="ocultarcita();" class="mx-3 btn btn-primary">Ocultar</button>
-                        </div>
+@section('content')
+    <div class="container">
+        <h1 class="my-5">Lista de Especialidades</h1>
+        <div class="row mb-5">
+            <div class="col-4">
+                <div class="card shadow">
+                    <div class="card-body" id="tarjeta">
+                        <h4 class="m-3">Crear Nueva Especialidad</h4>
+                        <form action="{{route('crearEspecialidad')}}" method="POST">
+                            @csrf
+                            <input type="text" name="nombre" id="" placeholder="Nombre de la especialidad"
+                                class="form-control mb-3">
+                                <input type="submit" value="Guardar Especialidad" class="btn btn-primary w-100 mb-2">
+                        </form>
                     </div>
                 </div>
-                <div class="col-4"></div>
-                <div class="col-4"></div>
             </div>
+        </div>
+        @if ($especialidades != null)
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#ID</th>
+                    <th scope="col">Nombre Especialidad</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($especialidades as $especialidad)
+                <tr>
+                    <th scope="row">{{$especialidad['idEspecialidad']}}</th>
+                    <td>{{$especialidad['nombre']}}</td>
+                    <td>
+                        <a href="" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+            
+        @else
+        <h2 class="text-center">No hay especialidades creadas</h2>
+            
+        @endif
+     
+    </div>
+@endsection

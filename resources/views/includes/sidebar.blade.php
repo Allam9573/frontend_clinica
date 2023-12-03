@@ -20,6 +20,8 @@
             <li><a href="{{url('/doctores')}}"><i class="bi bi-hospital">Doctores</i></a></li>                
             <li><a href="{{url('/pacientes')}}"><i class="bi bi-heart-pulse">Pacientes</i></a></li>
             <li><a href="{{url('/citas')}}"><i class="bi bi-clipboard2-pulse">Citas</i></a></li>
+            <li><a href="{{route('salas')}}"><i class="bi bi-clipboard2-pulse">Salas</i></a></li>
+            <li><a href="{{route('especialidades')}}"><i class="bi bi-clipboard2-pulse">Especialidades</i></a></li>
             <li><a >Mi Perfil</a></li>
         </ul>
     </div>

@@ -7,8 +7,8 @@ use GuzzleHttp\Client;
 
 class SalaController extends Controller
 {
-    public function formSala(){
-        return view('index');
+    public function index(){
+        return view('salas/salas');
     }
     public function crearSala(Request $request)
     {
@@ -20,15 +20,15 @@ class SalaController extends Controller
         try {
             $response = $client->request('POST', 'http://localhost:8080/api/salas/crear', [
                 'json' => [
-                    'nombre' => $nombre,
+                    'nombreSala' => $nombre,
                     'descripcion' => $descripcion,
                 ],
             ]);
 
             if ($response->getStatusCode() === 200) {
-                return redirect()->route('obtenerSalas');
+                return redirect()->route('salas');
             } else {
-                return response('Error al crear el cliente en Spring Boot', 500);
+                return response('Error al crear sala en Spring Boot', 500);
             }
         } catch (\Exception $e) {
             return response('Error: ' . $e->getMessage(), 500);
@@ -42,7 +42,7 @@ class SalaController extends Controller
             $response = $client->request('GET', 'http://localhost:8080/api/salas/listar');
             $salas = json_decode($response->getBody(), true);
 
-            return view('index', ['salas' => $salas]);
+            return view('salas/salas', ['salas' => $salas]);
         } catch (\Exception $e) {
             return response('Error: ' . $e->getMessage(), 500);
         }

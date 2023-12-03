@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\CitaController;
+use App\Http\Controllers\EspecialidadController;
 use App\Http\Controllers\SalaController;
 
 /*
@@ -20,7 +21,15 @@ use App\Http\Controllers\SalaController;
 Route::get('/', function () {
     return view('index');
 });
-// url salas
-Route::get('/', [SalaController::class, 'formSala']);
+Route::get('/doctores', [DoctorController::class, 'index'])->name('doctores');
+Route::get('/pacientes', [PacienteController::class, 'index'])->name('pacientes');
+
+Route::get('/especialidades', [EspecialidadController::class, 'obtenerEspecialidades'])->name('especialidades');
+Route::post('/crear_especialidad', [EspecialidadController::class, 'crearEspecialidad'])->name('crearEspecialidad');
+
+Route::get('/salas', [SalaController::class, 'obtenerSalas'])->name('salas');
 Route::post('/crear-sala', [SalaController::class, 'crearSala'])->name('crearSala');
-Route::get('/', [SalaController::class,'obtenerSalas'])->name('obtenerSalas');
+// Route::delete('/salas/{id}', /
+
+Route::get('/citas',[CitaController::class, 'obtenerCitas'])->name('citas');
+
