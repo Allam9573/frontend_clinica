@@ -26,8 +26,13 @@ class SalaController extends Controller
                 ],
             ]);
 
-            $body = $response->getBody()->getContents();
-            return response($body, $response->getStatusCode());
+            if ($response->getStatusCode() === 200) {
+                // Redirige a la vista HTML
+                return redirect()->route('obtenerSalas');
+            } else {
+                // Maneja otros casos según sea necesario
+                return response('Error al crear el cliente en Spring Boot', 500);
+            }
         } catch (\Exception $e) {
             return response('Error: ' . $e->getMessage(), 500);
         }
