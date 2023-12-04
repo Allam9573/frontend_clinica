@@ -11,7 +11,7 @@
                 <div class="card shadow">
                     <div class="card-body" id="tarjeta">
                         <h4 class="m-3">Crear Nuevo Doctor</h4>
-                        <form action="" method="POST">
+                        <form action="{{ route('crearDoctor') }}" method="POST">
                             @csrf
                             <input type="text" name="nombre" id="" placeholder="Nombre"
                                 class="form-control mb-2">
@@ -29,39 +29,35 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4"></div>
-            <div class="col-4"></div>
+        </div>
+        <div>
+            <h2 class="text-center">Lista de Doctores:</h2>
+            <div class="container">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($doctores as $doctor)
+                            <tr>
+                                <th scope="row">{{ $doctor['idDoctor'] }}</th>
+                                <td>{{ $doctor['nombre'] }}</td>
+                                <td>{{ $doctor['apellido'] }}</td>
+                                <td>
+                                    <a th:href="@{/app/doctores/doctor/}+${doctor.id}" class="btn btn-primary">Ver Mas</a>
+                                    <a th:href="@{/api/doctores/delete/}+${doctor.id}" class="btn btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <!-- Si hay doctores -->
-    <div th:if="${doctores.size() != 0}">
-        <h2 class="text-center">Lista de Doctores:</h2>
-        <div class="container">
-            <table class="table">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Especialidad</th>
-                        <th scope="col">Jornada</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="doctor : ${doctores}">
-                        <th th:text="${doctor.id}" scope="row">1</th>
-                        <td th:text="${doctor.nombre}"></td>
-                        <td th:text="${doctor.apellido}"></td>
-                        <td th:text="${doctor.especialidad}"></td>
-                        <td th:text="${doctor.jornadaLaboral}"></td>
-                        <td>
-                            <a th:href="@{/app/doctores/doctor/}+${doctor.id}" class="btn btn-primary">Ver Mas</a>
-                            <a th:href="@{/api/doctores/delete/}+${doctor.id}" class="btn btn-danger">Eliminar</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
 @endsection

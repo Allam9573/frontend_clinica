@@ -7,12 +7,24 @@
                 <div class="card shadow">
                     <div class="card-body" id="tarjeta">
                         <h4 class="m-3">Nueva Cita</h4>
-                        <form action="">
-                            <label>
-                                <input type="radio" name="opcion" value="opcion1">
-                                <img src="{{route('public/images/pediatria.png')}}" alt="Opción 1">
-                            </label>
+                        <form id="crearCitaForm">
+                            @csrf
+                            <label for="especialidad">Especialidad:</label>
+                            <select class="form-control" name="especialidad" id="especialidad">
+                                <!-- Agrega las opciones de especialidades aquí -->
+                                <option value="1">Especialidad 1</option>
+                                <option value="2">Especialidad 2</option>
+                                <!-- ... -->
+                            </select>
+
+                            <label for="doctor">Doctor:</label>
+                            <select class="form-control" name="doctor" id="doctor">
+                                <!-- Opciones de doctores se cargarán dinámicamente -->
+                            </select>
+
+                            <button type="submit">Crear Cita</button>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -50,11 +62,36 @@
                 </tbody>
             </table>
 
-
-            <button type="button" class="mx-3 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Crear Cita
-            </button>
-            <button id="button" onclick="ocultarcita();" class="mx-3 btn btn-primary">Ocultar</button>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Manejar el cambio en la selección de especialidad
+            $('#especialidad').on('change', function() {
+                var especialidadId = $(this).val();
+
+                // Realizar una solicitud AJAX para obtener los doctores
+                $.ajax({
+                    url: '/obtenerDoctores/' + especialidadId,
+                    method: 'GET',
+                    success: function(data) {
+                        // Limpiar y habilitar el campo de doctores
+                        $('#doctor').empty().prop('disabled', false);
+
+                        // Agregar las opciones de doctores
+                        $.each(data, function(key, doctor) {
+                            $('#doctor').append($('<option>', {
+                                value: doctor.id,
+                                text: doctor.nombre + ' ' + doctor.apellido
+                            }));
+                        });
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

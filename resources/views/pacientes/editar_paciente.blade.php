@@ -7,18 +7,17 @@
                 <div class="card shadow">
                     <div class="card-body" id="tarjeta">
                         <h4 class="m-3">Editar Informacion</h4>
-                        <form action="{{ route('crearPaciente') }}" method="POST">
+                        <form action="{{ route('actualizarPaciente', ['id' => $paciente['idPaciente']]) }}" method="POST">
                             @csrf
                             <input type="text" name="nombre" id="nombre" placeholder="Nombre"
-                                class="form-control mb-2" onkeyup="validateForm();">
+                                value="{{ $paciente['nombre'] }}" class="form-control mb-2" onkeyup="validateForm();">
                             <input type="text" name="apellido" id="apellido" placeholder="Apellido"
-                                class="form-control mb-2" onkeyup="validateForm();">
+                                class="form-control mb-2" onkeyup="validateForm();" value="{{ $paciente['apellido'] }}">
                             <input type="text" name="direccion" id="direccion" placeholder="Direccion"
-                                class="form-control mb-2" onkeyup="validateForm();">
+                                class="form-control mb-2" onkeyup="validateForm();" value="{{ $paciente['direccion'] }}">
                             <input type="text" name="telefono" id="telefono" placeholder="Telefono"
-                                class="form-control mb-2" onkeyup="validateForm();">
-                            <input type="submit" id="btnSend" value="Actualizar Paciente" class="btn btn-success w-100"
-                                disabled>
+                                class="form-control mb-2" onkeyup="validateForm();" value="{{ $paciente['telefono'] }}">
+                            <input type="submit" id="btnSend" value="Actualizar Paciente" class="btn btn-success w-100">
                         </form>
                     </div>
                 </div>

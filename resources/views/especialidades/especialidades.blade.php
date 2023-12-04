@@ -32,7 +32,7 @@
                             <th scope="row">{{ $especialidad['idEspecialidad'] }}</th>
                             <td>{{ $especialidad['nombre'] }}</td>
                             <td>
-                                <a href="{{route('editarEspecialidad')}}" class="btn btn-primary">Editar</a>
+                                <a href="{{route('editarEspecialidad', ['id'=>$especialidad['idEspecialidad']])}}" class="btn btn-primary">Editar</a>
                                 <a href="" class="btn btn-danger">Eliminar</a>
                             </td>
                         </tr>

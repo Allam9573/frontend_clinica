@@ -5,11 +5,12 @@
     <div class="card shadow">
         <div class="card-body" id="tarjeta">
             <h4 class="m-3">Editar Informacion</h4>
-            <form action="{{ route('crearEspecialidad') }}" method="POST">
+            <form action="{{ route('actualizarEspecialidad', ['id'=>$especialidad['idEspecialidad']]) }}">
                 @csrf
+                @method('PUT')
                 <input type="text" name="nombre" id="nombre" onkeyup="validateForm();"
-                    placeholder="Nombre de la sala" class="form-control mb-2">
-                <input type="submit" value="Actualizar Especialidad" id="btnSend" class="btn btn-success w-100" disabled>
+                    placeholder="Nombre de la sala" class="form-control mb-2" value="{{$especialidad['nombre']}}">
+                <input type="submit" value="Actualizar Especialidad" id="btnSend" class="btn btn-success w-100">
             </form>
         </div>
     </div>

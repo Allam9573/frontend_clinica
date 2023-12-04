@@ -21,11 +21,13 @@ use App\Http\Controllers\SalaController;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/doctores', [DoctorController::class, 'index'])->name('doctores');
+Route::get('/doctores', [DoctorController::class, 'obtenerDoctores'])->name('doctores');
+Route::post('/crear-doctor', [DoctorController::class, 'crearDoctor'])->name('crearDoctor');
 
 Route::get('/especialidades', [EspecialidadController::class, 'obtenerEspecialidades'])->name('especialidades');
 Route::post('/crear_especialidad', [EspecialidadController::class, 'crearEspecialidad'])->name('crearEspecialidad');
-Route::get('/editar-especialidad', [EspecialidadController::class, 'editarEspecialidad'])->name('editarEspecialidad');
+Route::get('/editar-especialidad/{id}', [EspecialidadController::class, 'editarEspecialidad'])->name('editarEspecialidad');
+Route::put('/actualizar-especialidad/{id}', [EspecialidadController::class, 'actualizarEspecialidad'])->name('actualizarEspecialidad');
 
 Route::get('/salas', [SalaController::class, 'obtenerSalas'])->name('salas');
 Route::post('/crear-sala', [SalaController::class, 'crearSala'])->name('crearSala');
@@ -36,5 +38,8 @@ Route::get('/citas',[CitaController::class, 'obtenerCitas'])->name('citas');
 
 Route::get('/pacientes',[PacienteController::class, 'obtenerPacientes'])->name('pacientes');
 Route::post('/crear-paciente', [PacienteController::class, 'crearPaciente'])->name('crearPaciente');
-Route::get('editar-paciente', [PacienteController::class, 'editarPaciente'])->name('editarPaciente');
+Route::get('editar-paciente/{id}', [PacienteController::class, 'editarPaciente'])->name('editarPaciente');
+Route::post('/actualizar-paciente/{id}', [PacienteController::class, 'actualizarPaciente'])->name('actualizarPaciente');
+
+
 

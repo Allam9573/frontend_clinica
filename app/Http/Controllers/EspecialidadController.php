@@ -46,7 +46,37 @@ class EspecialidadController extends Controller
             return response('Error: ' . $e->getMessage(), 500);
         }
     }
-    public function editarEspecialidad(){
-        return view('especialidades/editar_especialidad');
+    public function editarEspecialidad($id){
+        $client = new Client();
+
+        try {
+            $response = $client->request('GET', 'http://localhost:8080/api/especialidades/buscar/'.$id);
+            $especialidad = json_decode($response->getBody(), true);
+
+            return view('especialidades/editar_especialidad', ['especialidad' => $especialidad]);
+        } catch (\Exception $e) {
+            return response('Error: ' . $e->getMessage(), 500);
+        }
+    }
+    public function actualizarEspecialidad($id, Request $request){
+        $nombre = $request->input('nombre');
+
+        $client = new Client();
+
+        try {
+            $response = $client->put('http://localhost:8080/api/especialidades/editar/'.$id, [
+                'json' => [
+                    'nombre' => $nombre
+                ],
+            ]);
+
+            if ($response->getStatusCode() === 200) {
+                return redirect()->route('especialidades');
+            } else {
+                return response('Error al crear especialidad en Spring Boot', 500);
+            }
+        } catch (\Exception $e) {
+            return response('Error: ' . $e->getMessage(), 500);
+        }
     }
 }

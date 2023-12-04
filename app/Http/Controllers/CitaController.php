@@ -12,4 +12,12 @@ class CitaController extends Controller
     public function obtenerCitas(){
         return view('citas/citas');
     }
+    public function obtenerDoctores($especialidadId)
+    {
+        
+
+        $doctores = Doctor::where('especialidad_id', $especialidadId)->get();
+
+        return response()->json($doctores);
+    }
 }

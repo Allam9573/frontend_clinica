@@ -25,23 +25,21 @@ class DoctorController extends Controller
     {
         $nombre = $request->input('nombre');
         $apellido = $request->input('apellido');
-        $direccion = $request->input('direccion');
-        $telefono = $request->input('telefono');
+        $id_especialidad = $request->input('especialidad');
 
         $client = new Client();
 
         try {
-            $response = $client->request('POST', 'http://localhost:8080/api/paciente/crear', [
+            $response = $client->request('POST', 'http://localhost:8080/api/doctores/agregar/'.$id_especialidad, [
+                'Content-Type' => 'application/json',
                 'json' => [
                     'nombre' => $nombre,
-                    'apellido' => $apellido,
-                    'direccion'=>$direccion,
-                    'telefono'=>$telefono
+                    'apellido' => $apellido
                 ],
             ]);
 
             if ($response->getStatusCode() === 200) {
-                return redirect()->route('pacientes');
+                return redirect()->route('doctores');
             } else {
                 return response('Error al crear paciente en Spring Boot', 500);
             }
@@ -57,7 +55,10 @@ class DoctorController extends Controller
             $response = $client->request('GET', 'http://localhost:8080/api/doctores/listar');
             $doctores = json_decode($response->getBody(), true);
 
-            return view('doctores/doctores', ['doctores' => $doctores]);
+            $response = $client->request('GET', 'http://localhost:8080/api/especialidades/listar');
+            $especialidades = json_decode($response->getBody(), true);
+
+            return view('doctores/doctores', ['doctores' => $doctores, 'especialidades'=>$especialidades]);
         } catch (\Exception $e) {
             return response('Error: ' . $e->getMessage(), 500);
         }
