@@ -52,40 +52,15 @@ class PacienteController extends Controller
             return response('Error: ' . $e->getMessage(), 500);
         }
     }
-    public function editarPaciente($id){
+
+    public function eliminarPaciente($id){
         $client = new Client();
-
         try {
-            $response = $client->request('GET', 'http://localhost:8080/api/paciente/buscar/'.$id);
-            $paciente = json_decode($response->getBody(), true);
-
-            return view('pacientes/editar_paciente', ['paciente' => $paciente]);
-        } catch (\Exception $e) {
-            return response('Error: ' . $e->getMessage(), 500);
-        }
-    }
-    public function actualizarPaciente($id, Request $request){
-        $nombre = $request->input('nombre');
-        $apellido = $request->input('apellido');
-        $direccion = $request->input('direccion');
-        $telefono = $request->input('telefono');
-
-        $client = new Client();
-
-        try {
-            $response = $client->request('POST', 'http://localhost:8080/api/paciente/editar' .$id, [
-                'json' => [
-                    'nombre' => $nombre,
-                    'apellido' => $apellido,
-                    'direccion'=>$direccion,
-                    'telefono'=>$telefono
-                ],
-            ]);
-
+            $response = $client->request('GET', 'http://localhost:8080/api/paciente/eliminar/' . $id);
             if ($response->getStatusCode() === 200) {
-                return redirect()->route('pacientes');
+                return redirect()->route('pacientes')->with('success', 'Registro eliminado correctamente');
             } else {
-                return response('Error al crear paciente en Spring Boot', 500);
+                return response('Error al eliminar el registro en Spring Boot', 500);
             }
         } catch (\Exception $e) {
             return response('Error: ' . $e->getMessage(), 500);

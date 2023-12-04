@@ -13,23 +13,24 @@
                         <h4 class="m-3">Crear Nuevo Doctor</h4>
                         <form action="{{ route('crearDoctor') }}" method="POST">
                             @csrf
-                            <input type="text" name="nombre" id="" placeholder="Nombre"
+                            <input type="text" name="nombre" id="nombre" placeholder="Nombre"
                                 class="form-control mb-2">
-                            <input type="text" name="apellido" id="" placeholder="Apellido"
+                            <input type="text" name="apellido" onkeyup="validateForm()" id="apellido" placeholder="Apellido"
                                 class="form-control mb-2">
-                            <select name="especialidad" id="especialidad" class="form-control mb-2">
+                            <select name="especialidad" onkeyup="validateForm()" id="especialidad" class="form-control mb-2">
                                 <option value="">Seleccione una especialidad</option>
                                 @foreach ($especialidades as $especialidad)
                                     <option value="{{ $especialidad['idEspecialidad'] }}">{{ $especialidad['nombre'] }}
                                     </option>
                                 @endforeach
                             </select>
-                            <input type="submit" value="Guardar Doctor" class="btn btn-primary w-100">
+                            <input type="submit" value="Guardar Doctor" id="btnSend" class="btn btn-primary w-100" disabled>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        @if ($doctores != null)
         <div>
             <h2 class="text-center">Lista de Doctores:</h2>
             <div class="container">
@@ -49,8 +50,7 @@
                                 <td>{{ $doctor['nombre'] }}</td>
                                 <td>{{ $doctor['apellido'] }}</td>
                                 <td>
-                                    <a th:href="@{/app/doctores/doctor/}+${doctor.id}" class="btn btn-primary">Ver Mas</a>
-                                    <a th:href="@{/api/doctores/delete/}+${doctor.id}" class="btn btn-danger">Eliminar</a>
+                                    <a href="{{route('eliminarDoctor', ['id'=>$doctor['idDoctor']])}}" class="btn btn-danger">Eliminar</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -58,6 +58,20 @@
                 </table>
             </div>
         </div>
+        @else
+            <h1 class="text-center mt-5">No hay doctores registrados</h1>
+        @endif
     </div>
-    <!-- Si hay doctores -->
+    <script>
+        function validateForm() {
+            var nombre = document.getElementById('nombre');
+            var apellido = document.getElementById('apellido');
+            var btnSend = document.getElementById('btnSend');
+            if (nombre.value.length === 0 || apellido.value.length === 0) {
+                btnSend.disabled = true;
+            } else {
+                btnSend.disabled = false;
+            }
+        }
+    </script>
 @endsection

@@ -56,8 +56,7 @@
                                 <td>{{ $paciente['telefono'] }}</td>
                                 <td>{{ $paciente['fechaCreacion'] }}</td>
                                 <td>
-                                    <a href="{{route('editarPaciente', ['id'=>$paciente['idPaciente']])}}" class="btn btn-primary">Editar</a>
-                                    <a class="btn btn-danger">Eliminar</a>
+                                    <a href="{{route('eliminarPaciente', ['id'=>$paciente['idPaciente']])}}" class="btn btn-danger">Eliminar</a>
                                 </td>
                             </tr>
                         @endforeach

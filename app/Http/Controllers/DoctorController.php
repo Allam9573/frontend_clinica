@@ -63,4 +63,17 @@ class DoctorController extends Controller
             return response('Error: ' . $e->getMessage(), 500);
         }
     }
+    public function eliminarDoctor($id){
+        $client = new Client();
+        try {
+            $response = $client->request('GET', 'http://localhost:8080/api/doctores/eliminar/' . $id);
+            if ($response->getStatusCode() === 200) {
+                return redirect()->route('doctores')->with('success', 'Registro eliminado correctamente');
+            } else {
+                return response('Error al eliminar el registro en Spring Boot', 500);
+            }
+        } catch (\Exception $e) {
+            return response('Error: ' . $e->getMessage(), 500);
+        }
+    }
 }

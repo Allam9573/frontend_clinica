@@ -79,4 +79,20 @@ class EspecialidadController extends Controller
             return response('Error: ' . $e->getMessage(), 500);
         }
     }
+    public function eliminarEspecialidad($id){
+        $client = new Client();
+        try {
+            $response = $client->delete('http://localhost:8080/api/especialidades/eliminar/'.$id, [
+               
+            ]);
+
+            if ($response->getStatusCode() === 200) {
+                return redirect()->route('especialidades');
+            } else {
+                return response('Error al crear especialidad en Spring Boot', 500);
+            }
+        } catch (\Exception $e) {
+            return response('Error: ' . $e->getMessage(), 500);
+        }
+    }
 }

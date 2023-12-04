@@ -32,8 +32,7 @@
                             <th scope="row">{{ $especialidad['idEspecialidad'] }}</th>
                             <td>{{ $especialidad['nombre'] }}</td>
                             <td>
-                                <a href="{{route('editarEspecialidad', ['id'=>$especialidad['idEspecialidad']])}}" class="btn btn-primary">Editar</a>
-                                <a href="" class="btn btn-danger">Eliminar</a>
+                                <a href="{{route('eliminarEspecialidad', ['id'=>$especialidad['idEspecialidad']])}}" class="btn btn-danger">Eliminar</a>
                             </td>
                         </tr>
                     @endforeach

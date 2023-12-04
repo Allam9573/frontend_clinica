@@ -54,7 +54,8 @@
                                 <div class="card-body">
                                     <h3 class="card-title text-danger">Citas Medicas</h3>
                                     <h5 class="card-text text-secondary"></h5>
-                                    <a href="{{ route('citas') }}" class="btn btn-danger">Ver Mas</a>
+                                    <a href="{{ route('obtenerDoctoresEspecialidad', ['especialidadId' => 1]) }}"
+                                        class="btn btn-danger">Ver Mas</a>
                                 </div>
                             </div>
                         </div>

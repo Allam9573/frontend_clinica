@@ -43,8 +43,7 @@
                                     <td>{{ $sala['nombreSala'] }}</td>
                                     <td>{{ $sala['descripcion'] }}</td>
                                     <td>
-                                        <a href="{{route('editarSala')}}" class="btn btn-primary">Editar</a>
-                                        <a class="btn btn-danger">Eliminar</a>
+                                        <a href="{{route('eliminarSala', ['id'=>$sala['idSala']])}}" class="btn btn-danger">Eliminar</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -50,9 +50,9 @@ class SalaController extends Controller
     public function eliminarSala($id){
         $client = new Client();
         try {
-            $response = $client->request('GET', 'http://localhost:8080/api/salas/eliminar' . $id);
+            $response = $client->request('GET', 'http://localhost:8080/api/salas/eliminar/' . $id);
             if ($response->getStatusCode() === 200) {
-                return redirect()->route('obtenerSalas')->with('success', 'Registro eliminado correctamente');
+                return redirect()->route('salas')->with('success', 'Registro eliminado correctamente');
             } else {
                 return response('Error al eliminar el registro en Spring Boot', 500);
             }
