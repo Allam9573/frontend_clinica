@@ -56,7 +56,7 @@
                                 <td>{{ $paciente['telefono'] }}</td>
                                 <td>{{ $paciente['fechaCreacion'] }}</td>
                                 <td>
-                                    <a class="btn btn-primary">Ver Mas</a>
+                                    <a href="{{route('editarPaciente')}}" class="btn btn-primary">Editar</a>
                                     <a class="btn btn-danger">Eliminar</a>
                                 </td>
                             </tr>

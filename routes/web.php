@@ -22,10 +22,10 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get('/doctores', [DoctorController::class, 'index'])->name('doctores');
-Route::get('/pacientes', [PacienteController::class, 'index'])->name('pacientes');
 
 Route::get('/especialidades', [EspecialidadController::class, 'obtenerEspecialidades'])->name('especialidades');
 Route::post('/crear_especialidad', [EspecialidadController::class, 'crearEspecialidad'])->name('crearEspecialidad');
+Route::get('/editar-especialidad', [EspecialidadController::class, 'editarEspecialidad'])->name('editarEspecialidad');
 
 Route::get('/salas', [SalaController::class, 'obtenerSalas'])->name('salas');
 Route::post('/crear-sala', [SalaController::class, 'crearSala'])->name('crearSala');
@@ -36,4 +36,5 @@ Route::get('/citas',[CitaController::class, 'obtenerCitas'])->name('citas');
 
 Route::get('/pacientes',[PacienteController::class, 'obtenerPacientes'])->name('pacientes');
 Route::post('/crear-paciente', [PacienteController::class, 'crearPaciente'])->name('crearPaciente');
+Route::get('editar-paciente', [PacienteController::class, 'editarPaciente'])->name('editarPaciente');
 

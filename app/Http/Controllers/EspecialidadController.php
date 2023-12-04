@@ -46,4 +46,7 @@ class EspecialidadController extends Controller
             return response('Error: ' . $e->getMessage(), 500);
         }
     }
+    public function editarEspecialidad(){
+        return view('especialidades/editar_especialidad');
+    }
 }

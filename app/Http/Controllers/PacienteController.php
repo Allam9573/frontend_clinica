@@ -52,5 +52,7 @@ class PacienteController extends Controller
             return response('Error: ' . $e->getMessage(), 500);
         }
     }
-    
+    public function editarPaciente(){
+        return view('pacientes/editar_paciente');
+    }
 }
