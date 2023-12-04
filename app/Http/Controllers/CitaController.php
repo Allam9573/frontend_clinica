@@ -33,4 +33,7 @@ class CitaController extends Controller
             return response('Error: ' . $e->getMessage(), 500);
         }
     }
+    public function crearCita(){
+        
+    }
 }
