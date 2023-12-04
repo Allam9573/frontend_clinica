@@ -39,6 +39,7 @@ Route::get('/eliminar-sala/{id}', [SalaController::class, 'eliminarSala'])->name
 Route::get('/citas', [CitaController::class, 'index'])->name('citas');
 // Route::get('/citas/1', [CitaController::class, 'obtenerDoctoresEspecialidad'])->name('obtenerDoctoresEspecialidad');
 Route::get('/citas/{especialidadId}', [CitaController::class, 'obtenerDoctoresEspecialidad'])->name('obtenerDoctoresEspecialidad');
+Route::post('/crear-cita', [CitaController::class, 'crearCita'])->name('crearCita');
 
 
 Route::get('/pacientes',[PacienteController::class, 'obtenerPacientes'])->name('pacientes');

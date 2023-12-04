@@ -7,12 +7,12 @@
                 <div class="card shadow">
                     <div class="card-body" id="tarjeta">
                         <h4 class="m-3">Nueva Cita</h4>
-                        <form id="crearCitaForm">
+                        <form id="crearCitaForm" action="{{ route('crearCita') }}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-4">
                                     <label for="especialidad">Especialidad:</label>
-                                    <select class="form-control" name="especialidad" id="especialidad">
+                                    <select class="form-control mb-4" name="especialidad" id="especialidad">
                                         @foreach ($especialidades as $especialidad)
                                             <option value="{{ $especialidad['idEspecialidad'] }}">
                                                 {{ $especialidad['nombre'] }}</option>
@@ -20,21 +20,21 @@
                                     </select>
 
                                     <label for="doctor">Doctor:</label>
-                                    <select class="form-control" name="doctor" id="doctor">
+                                    <select class="form-control" name="idDoctor" id="doctor">
                                         @foreach ($doctores as $doctor)
-                                            <option value="">{{ $doctor['nombre'] }}</option>
+                                            <option value="{{ $doctor['idDoctor'] }}"> {{ $doctor['nombre'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-4">
                                     <label for="paciente">Paciente:</label>
-                                    <select class="form-control" name="paciente" id="">
+                                    <select class="form-control mb-4" name="idPaciente" id="paciente">
                                         @foreach ($pacientes as $paciente)
                                             <option value="{{ $paciente['idPaciente'] }}">{{ $paciente['nombre'] }}</option>
                                         @endforeach
                                     </select>
-                                    <label for="paciente">Sala:</label>
-                                    <select class="form-control" name="paciente" id="">
+                                    <label for="sala">Sala:</label>
+                                    <select class="form-control" name="idSala" id="sala">
                                         @foreach ($salas as $sala)
                                             <option value="{{ $sala['idSala'] }}">{{ $sala['nombreSala'] }}</option>
                                         @endforeach
@@ -49,30 +49,34 @@
                 </div>
             </div>
         </div>
-        <div>
-            <h2 class="text-center">Lista de Citas:</h2>
-            <div class="container">
-                <table class="table">
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col">#ID</th>
-                            <th scope="col">Paciente</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th th:text="${doctor.id}" scope="row">1</th>
-                            <td th:text="${doctor.nombre}"></td>
-                            <td>
-                                <a class="btn btn-danger">Eliminar</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-    
+        @if ($citas != null)
+            <div>
+                <h2 class="text-center">Lista de Citas:</h2>
+                <div class="container">
+                    <table class="table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">#ID</th>
+                                <th scope="col">Paciente</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th th:text="${doctor.id}" scope="row">1</th>
+                                <td th:text="${doctor.nombre}"></td>
+                                <td>
+                                    <a class="btn btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
-        </div>
+        @else
+            <h1 class="mt-5 text-center">No hay citas creadas.</h1>
+        @endif
     </div>
     <!-- Si hay doctores -->
 
